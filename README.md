@@ -7,8 +7,8 @@ Players are presented with an assortment of 16 cards. Players will be matching c
 Play my Live Demo at :
 
 # Wireframe
-
+![alt tag]()
 # Psuedocode
-
+![alt tag]()
 # Credits
 Img Srcs: https://www.pinterest.com/emmonsnicholas1/wanted-posters/

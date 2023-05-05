@@ -69,6 +69,17 @@ const movesCounter = () => {
     movesCount +=1;
     moves.innerHTML = `<span>Moves:</span>${movesCount}`;
 };
+// Pick random cards
+const generateRandom = (size = 4) => {
+    //temporary array
+    let tempArray = [...items];
+    let cardValues = [];
+    size = (size* size) /2;
+    for(let i=0; i< size;i++){
+        const randomIndex = Math.floor(Math.random()* tempArray.length);
+        cardValues.push(tempArray[randomIndex])
+    }
+}
 //Event Listeners//
 //
 

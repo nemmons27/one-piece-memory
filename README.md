@@ -7,7 +7,7 @@ Players are presented with an assortment of 16 cards. Players will be matching c
 Play my Live Demo at :
 
 # Wireframe
-![alt tag]()
+![alt tag][]
 # Psuedocode
 On the home page, Players will choose(press button) their difficulty;
 On the game page, a game timer will start counting down from 1:30 once the player clicks the first card to show the face;
@@ -19,3 +19,6 @@ Play again button shows at the bottom once the game has ended;
 
 # Credits
 Img Srcs: https://www.pinterest.com/emmonsnicholas1/wanted-posters/
+
+
+[def]: https://github.com/nemmons27/one-piece-memory/blob/main/345300264_131232316608597_8714497106024383686_n.jpg

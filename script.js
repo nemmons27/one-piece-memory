@@ -12,6 +12,7 @@
 //Game-timer stops when last pair is made,
     //if the timer runs out, Display message "Seems like you got lost"
     //else, displays message "You might be ready to find the One Piece!"
+
 //Diplay time remaining
 //Display moves used
 //Display play again button

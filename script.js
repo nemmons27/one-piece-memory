@@ -34,12 +34,24 @@ let cards;
 let interval;
 let firstCard = false;
 let secondCard = false;
+//Card array
+const items =[
+    {name: "Kidd", image: "kiddwanted.jpg"},
+    {name: "Killer", image: "killerwanted.jpg"},
+    {name: "Law", image: "lawwanted.png"},
+    {name: "Luffy", image: "pirateking.jpg"},
+    {name: "Sabo", image: "sabowanted.jpg"},
+    {name: "Yamato", image: "yamatowanted.jpg"},
+    {name: "Zoro", image: "zorowanted.jpg"},
+    {name: "Marco", image: "marcoWanted.jpg"},
+];
+//Initial time
 let seconds = 0,
     minutes = 0;
-
+//Inital moves and win count
 let movesCount = 0,
     winCount = 0;
-
+//For timer
 const timeGenerator = () => {
     
 }

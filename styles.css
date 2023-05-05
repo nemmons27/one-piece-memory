@@ -20,3 +20,8 @@ background-color: rgb(255, 208, 0);
     box-shadow: 0 0.9em 2.8em rgba(87, 60, 0, 0.4);
 
 }
+.game-container {
+    position: relative;
+    width: 100%;
+    display: grid;
+}

@@ -23,13 +23,13 @@
 const moves = document.getElementById("moves-count");
 const timeValue = document.getElementById("time")
 const startButton = document.getElementById("start")
-const stopButton = document.getElementById("stop")
+const playAgainButton = document.getElementById("play-again")
 const gameBoard = document.querySelector(".game-board");
 const result = document.getElementById("result")
 const controls = document.querySelector(".controls-container")
 
-//Variables/
-// 
+//Variables//
+
 let cards;
 let interval;
 let firstCard = false;
@@ -53,8 +53,22 @@ let movesCount = 0,
     winCount = 0;
 //For timer
 const timeGenerator = () => {
-    
-}
+    seconds +=1
+    if (seconds>=60) {
+        minutes +=1;
+        seconds = 0;
+    }
+    //Format the time before displaying
+    let secondsValue = seconds <10 ? `0${seconds}` : seconds;
+    let minutesValue = minutes < 10 ? `0${minutes}` : minutes;
+    timeValue.innerHTML = '<span>Time:</span>${minutesValue}:${secondsvalue}';
+};
+
+//For move counter
+const movesCounter = () => {
+    movesCount +=1;
+    moves.innerHTML = `<span>Moves:</span>${movesCount}`;
+};
 //Event Listeners//
 //
 

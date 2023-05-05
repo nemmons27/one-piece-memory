@@ -78,8 +78,26 @@ const generateRandom = (size = 4) => {
     for(let i=0; i< size;i++){
         const randomIndex = Math.floor(Math.random()* tempArray.length);
         cardValues.push(tempArray[randomIndex])
+        tempArray.splice(randomIndex, 1);
     }
-}
+    return cardValues;
+};
+
+const matrixGenerator = (cardValue, size = 4) => {
+    gameBoard.innerHTML = "";
+    cardValues= [...cardValues, ...cardValues]; 
+};
+//Shuffle the Cards!
+cardValues.sort(() => Math.random() - 0.5);
+for(let i=0; i<size*size;i++){
+};
+
+const initializer = () => {
+    result.innerText ="";
+    winCount = 0;
+    let cardValues = generateRandom
+};
+
 //Event Listeners//
 //
 

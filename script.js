@@ -13,6 +13,38 @@
     //if the timer runs out, Display message "Seems like you got lost"
     //else, displays message "You might be ready to find the One Piece!"
 
-//Diplay time remaining
+
 //Display moves used
 //Display play again button
+
+//Constants//
+// First we're going to have to declare the game-board, the game-timer,
+// and the moves counter as our constants. As well as our buttons.
+const moves = document.getElementById("moves-count");
+const timeValue = document.getElementById("time")
+const startButton = document.getElementById("start")
+const stopButton = document.getElementById("stop")
+const gameBoard = document.querySelector(".game-board");
+const result = document.getElementById("result")
+const controls = document.querySelector(".controls-container")
+
+//Variables/
+// 
+let cards;
+let interval;
+let firstCard = false;
+let secondCard = false;
+let seconds = 0,
+    minutes = 0;
+
+let movesCount = 0,
+    winCount = 0;
+
+const timeGenerator = () => {
+    
+}
+//Event Listeners//
+//
+
+//Function//
+//

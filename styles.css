@@ -1,0 +1,21 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "";
+}
+body {
+
+Background-image: url(‘gif’);
+}
+.wrapper {
+    box-sizing: border-box;
+    width: 27em;
+    padding: 2.5em 3em;
+    background-color: aqua;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+    border-radius: o.5em;
+}

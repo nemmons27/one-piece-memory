@@ -7,8 +7,15 @@ Players are presented with an assortment of 16 cards. Players will be matching c
 Play my Live Demo at :
 
 # Wireframe
-![alt tag]()
+
 # Psuedocode
-![alt tag]()
+On the home page, Players will choose(press button) their difficulty;
+On the game page, a game timer will start counting down from 1:30 once the player clicks the first card to show the face;
+If the second card the player chooses is a match, then they stay face up;
+Else, the first card flips back down and and 5 second penalty;
+If the timer runs out, a message will appear saying "seems like you got lost";
+Else, the timer stops and a message will appear saying "you might be ready to find the One Piece!" with your time and moves being presented underneath it;
+Play again button shows at the bottom once the game has ended;
+
 # Credits
 Img Srcs: https://www.pinterest.com/emmonsnicholas1/wanted-posters/

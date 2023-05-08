@@ -74,10 +74,11 @@ const generateRandom = (size = 4) => {
     //temporary array
     let tempArray = [...items];
     let cardValues = [];
-    size = (size* size) /2;
-    for(let i=0; i< size;i++){
-        const randomIndex = Math.floor(Math.random()* tempArray.length);
+    size = (size* size) / 2;
+    for(let i = 0; i< size; i++){
+        const randomIndex = Math.floor(Math.random() * tempArray.length);
         cardValues.push(tempArray[randomIndex])
+        //Remove selected Card from temp array 
         tempArray.splice(randomIndex, 1);
     }
     return cardValues;
@@ -86,17 +87,29 @@ const generateRandom = (size = 4) => {
 const matrixGenerator = (cardValue, size = 4) => {
     gameBoard.innerHTML = "";
     cardValues= [...cardValues, ...cardValues]; 
+    //Shuffle the Cards!
+    cardValues.sort(() => Math.random() - 0.5);
+    for(let i = 0; i < size * size; i++){
+        gameBoard.innerHTML +=`
+        <div class="card-container" data-card-value=${cardValues[i].name}">
+        <div class ="card-before">?</div>
+        <div class="card-after">
+        <img src="${cardValues[i].image}"
+        class="image"/></div>
+        </div>
+        
+        `
 };
-//Shuffle the Cards!
-cardValues.sort(() => Math.random() - 0.5);
-for(let i=0; i<size*size;i++){
-};
+}
 
 const initializer = () => {
     result.innerText ="";
     winCount = 0;
-    let cardValues = generateRandom
+    let cardValues = generateRandom();
+    matrixGenerator(cardValues);
 };
+
+initializer();
 
 //Event Listeners//
 //

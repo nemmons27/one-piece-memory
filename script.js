@@ -90,7 +90,7 @@ const matrixGenerator = (cardValue, size = 4) => {
     //Shuffle the Cards!
     cardValues.sort(() => Math.random() - 0.5);
     for(let i = 0; i < size * size; i++){
-        gameBoard.innerHTML +=`
+        gameBoard.innerHTML += `
         <div class="card-container" data-card-value=${cardValues[i].name}">
         <div class ="card-before">?</div>
         <div class="card-after">
@@ -98,9 +98,11 @@ const matrixGenerator = (cardValue, size = 4) => {
         class="image"/></div>
         </div>
         
-        `
-};
+        `;
 }
+}
+gameBoard.style.gridTemplateColumns = `repeat(${size},auto)`;
+
 
 const initializer = () => {
     result.innerText ="";
@@ -109,10 +111,3 @@ const initializer = () => {
     matrixGenerator(cardValues);
 };
 
-initializer();
-
-//Event Listeners//
-//
-
-//Function//
-//

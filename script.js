@@ -125,6 +125,14 @@ cards.forEach((card) => {
                         <h2>You're ready to set Sail!</h2>`;
                         stopGame();
                     }
+                } else {
+                    let [tempFirst, tempSecond] = [firstCard, secondCard];
+                    firstCard = false;
+                    secondCard = false;
+                    let delay = setTimeout (() => {
+                        tempFirst.classList.remove("flipped");
+                        tempSecond.classList.remove("flipped");
+                    }, 900);
                 }
             }
         }

@@ -103,6 +103,33 @@ const matrixGenerator = (cardValue, size = 4) => {
 }
 gameBoard.style.gridTemplateColumns = `repeat(${size},auto)`;
 
+cards = document.querySelectorAll(".card-container");
+cards.forEach((card) => {
+    card.addEventListener("click", () => {
+        if (!card.classList.contains("matched")) {
+            card.classList.add("flipped");
+            if (!firstCard) {
+                firstCard = card;
+                firstCardValue = card.getAttribute("data-card-value");
+            } else {
+                movesCounter();
+                secondCard = card;
+                let secondCardValue = card.getAttribute("data-card-value");
+                if (firstCardValue == secondCardValue) {
+                    firstCard.classList.add("matched");
+                    secondCard.classList.add("matched");
+                    firstCard = false;
+                    winCount += 1;
+                    if (winCount == Math.floor(cardValues.length / 2)) {
+                        result.innerHTML = `<h4>Moves: ${movesCount}</h4>
+                        <h2>You're ready to set Sail!</h2>`;
+                        stopGame();
+                    }
+                }
+            }
+        }
+    })
+})
 
 const initializer = () => {
     result.innerText ="";

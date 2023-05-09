@@ -71,10 +71,10 @@ const movesCounter = () => {
 };
 // Pick random cards
 const generateRandom = (size = 4) => {
-    //temporary array
     let tempArray = [...items];
     let cardValues = [];
     size = (size* size) / 2;
+    //Random seelection
     for(let i = 0; i< size; i++){
         const randomIndex = Math.floor(Math.random() * tempArray.length);
         cardValues.push(tempArray[randomIndex])
@@ -138,33 +138,4 @@ cards.forEach((card) => {
         };
     });
 });
-
-startButton.addEventListener("click", () => {
-    movesCount = 0;
-    seconds = 0;
-    minutes = 0;
-    controls.classList.add("hide");
-    playAgainButton.classList.remove("hide");
-    startButton.classList.add("hide");
-    interval =setInterval (timeGenerator, 1000);
-    moves.innerHTML = `<span>Moves:</span> ${movesCount}`;
-    initializer();
-});
-stopButton.addEventListener( 
-    "click",
-    (stopGame = () => {
-        controls.classList.remove("hide");
-        stopButton.classList.add("hide");
-        startButton.classList.remove("hide");
-        clearInterval(interval);
-    })
-);
-
-function initializer() {
-    result.innerText = "";
-    winCount = 0;
-    let cardValues = generateRandom();
-    console.log(cardValues)
-    matrixGenerator(cardValues);
-}
 

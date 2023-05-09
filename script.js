@@ -92,8 +92,8 @@ const matrixGenerator = (cardValue, size = 4) => {
     for(let i = 0; i < size * size; i++){
         gameBoard.innerHTML += `
         <div class="card-container" data-card-value=${cardValues[i].name}">
-        <div class ="card-before">?</div>
-        <div class="card-after">
+            <div class ="card-before">?</div>
+            <div class="card-after">
         <img src="${cardValues[i].image}"
         class="image"/></div>
         </div>

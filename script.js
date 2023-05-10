@@ -24,10 +24,10 @@ const moves = document.getElementById("moves-count");
 const timeValue = document.getElementById("time")
 const startButton = document.getElementById("start")
 const playAgainButton = document.getElementById("play-again")
-const gameBoard = document.querySelector(".game-board");
+const gameBoard = document.querySelector(".gameBoard");
 const result = document.getElementById("result")
 const controls = document.querySelector(".controls-container")
-
+console.log(result)
 //Variables//
 
 let cards;
@@ -44,6 +44,10 @@ const items =[
     {name: "Yamato", image: "yamatowanted.jpg"},
     {name: "Zoro", image: "zorowanted.jpg"},
     {name: "Marco", image: "marcoWanted.jpg"},
+    {name: "Buggy", image: "buggywanted.jpg"},
+    {name: "Doflamingo", image: "doflamingowanted.jpg"},
+    {name: "Shanks", image: "shankswanted.jpg"},
+    {name: "Rosinante", image: "rosinantewanted.jpg"},
 ];
 //Initial time
 let seconds = 0,
@@ -73,8 +77,8 @@ const movesCounter = () => {
 const generateRandom = (size = 4) => {
     let tempArray = [...items];
     let cardValues = [];
-    size = (size* size) / 2;
-    //Random seelection
+    size = (size * size) / 2;
+    //Random selection
     for(let i = 0; i< size; i++){
         const randomIndex = Math.floor(Math.random() * tempArray.length);
         cardValues.push(tempArray[randomIndex])
@@ -86,10 +90,11 @@ const generateRandom = (size = 4) => {
 
 const matrixGenerator = (cardValue, size = 4) => {
     gameBoard.innerHTML = "";
-    cardValues= [...cardValues, ...cardValues]; 
+    cardValues = [...cardValues, ...cardValues]; 
     //Shuffle the Cards!
     cardValues.sort(() => Math.random() - 0.5);
     for(let i = 0; i < size * size; i++){
+        //Create the cards
         gameBoard.innerHTML += `
         <div class="card-container" data-card-value=${cardValues[i].name}">
             <div class ="card-before">?</div>
@@ -97,12 +102,11 @@ const matrixGenerator = (cardValue, size = 4) => {
         <img src="${cardValues[i].image}"
         class="image"/></div>
         </div>
-        
         `;
 }
 }
-gameBoard.style.gridTemplateColumns = `repeat(${size},auto)`;
 
+//CARD CONTAINER
 cards = document.querySelectorAll(".card-container");
 cards.forEach((card) => {
     card.addEventListener("click", () => {
@@ -139,3 +143,12 @@ cards.forEach((card) => {
     });
 });
 
+//initialize values and func calls
+const initializer = () => {
+    result.innerText = "";
+    winCount = 0;
+    let cardValue = generateRandom();
+    matrixGenerator(cardValue);
+};
+
+initializer();

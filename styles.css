@@ -25,15 +25,16 @@ button {
     padding: 1em 1.5em;
     cursor: pointer;
 }
-.game-board {
+.gameBoard {
     position: relative;
     width: 100%;
     display: grid;
     gap: .7em;
+    grid-template-columns: 4, auto;
 }
 .stats-container {
     text-align: right;
-    margin-bottom: 1em;
+    margin-bottom: 1.2em;
 }
 .stats-container span {
     font-weight: 600;
@@ -51,7 +52,7 @@ button {
 }
 .controls-container button {
     font-size: 1.2em;
-    box-shadow: 0 0.6em 2em rgba(87, 60, 0, 0.4);
+    box-shadow: 0 0.6em 2em rgba(86, 66, 0, 0.2);
 }
 .hide {
     display: none;
@@ -66,8 +67,8 @@ button {
 .card-after {
     position: absolute;
     border-radius: 5px;
-    width: 100%;
-    height: 100%;
+    width: 16px;
+    height: 16px;
     display: flex;
     align-items: center;
     justify-content: center;

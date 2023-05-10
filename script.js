@@ -21,13 +21,12 @@
 // First we're going to have to declare the game-board, the game-timer,
 // and the moves counter as our constants. As well as our buttons.
 const moves = document.getElementById("moves-count");
-const timeValue = document.getElementById("time")
-const startButton = document.getElementById("start")
-const playAgainButton = document.getElementById("play-again")
+const timeValue = document.getElementById("time");
+const startButton = document.getElementById("start");
+const stopButton = document.getElementById("stop");
 const gameBoard = document.querySelector(".gameBoard");
-const result = document.getElementById("result")
-const controls = document.querySelector(".controls-container")
-console.log(result)
+const result = document.getElementById("result");
+const controls = document.querySelector(".controls-container");
 //Variables//
 
 let cards;
@@ -36,18 +35,18 @@ let firstCard = false;
 let secondCard = false;
 //Card array
 const items =[
-    {name: "Kidd", image: "kiddwanted.jpg"},
-    {name: "Killer", image: "killerwanted.jpg"},
-    {name: "Law", image: "lawwanted.png"},
-    {name: "Luffy", image: "pirateking.jpg"},
-    {name: "Sabo", image: "sabowanted.jpg"},
-    {name: "Yamato", image: "yamatowanted.jpg"},
-    {name: "Zoro", image: "zorowanted.jpg"},
-    {name: "Marco", image: "marcoWanted.jpg"},
-    {name: "Buggy", image: "buggywanted.jpg"},
-    {name: "Doflamingo", image: "doflamingowanted.jpg"},
-    {name: "Shanks", image: "shankswanted.jpg"},
-    {name: "Rosinante", image: "rosinantewanted.jpg"},
+    {name: "Kidd", image: "../img/kiddwanted.jpg"},
+    {name: "Killer", image: "../img/killerwanted.jpg"},
+    {name: "Law", image: "../img/lawwanted.png"},
+    {name: "Luffy", image: "../img/pirateking.png"},
+    {name: "Sabo", image: "../img/sabowanted.jpg"},
+    {name: "Yamato", image: "../img/yamatowanted.png"},
+    {name: "Zoro", image: "../img/zorowanted.png"},
+    {name: "Marco", image: "../img/marcoWanted.jpg"},
+    {name: "Buggy", image: "../img2/buggywanted.jpg"},
+    {name: "Doflamingo", image: "../img2/doflamingowanted.jpg"},
+    {name: "Shanks", image: "../img2/shankswanted.jpg"},
+    {name: "Rosinante", image: "../img2/rosinantewanted.jpg"},
 ];
 //Initial time
 let seconds = 0,
@@ -65,7 +64,7 @@ const timeGenerator = () => {
     //Format the time before displaying
     let secondsValue = seconds <10 ? `0${seconds}` : seconds;
     let minutesValue = minutes < 10 ? `0${minutes}` : minutes;
-    timeValue.innerHTML = '<span>Time:</span>${minutesValue}:${secondsvalue}';
+    timeValue.innerHTML = `<span>Time:</span>${minutesValue}:${secondsValue}`;
 };
 
 //For move counter
@@ -90,20 +89,21 @@ const generateRandom = (size = 4) => {
 
 const matrixGenerator = (cardValue, size = 4) => {
     gameBoard.innerHTML = "";
-    cardValues = [...cardValues, ...cardValues]; 
+    cardValues = [...cardValue, ...cardValue]; 
     //Shuffle the Cards!
     cardValues.sort(() => Math.random() - 0.5);
     for(let i = 0; i < size * size; i++){
         //Create the cards
         gameBoard.innerHTML += `
-        <div class="card-container" data-card-value=${cardValues[i].name}">
+        <div class="card-container" data-card-value="${cardValues[i].name}">
             <div class ="card-before">?</div>
             <div class="card-after">
-        <img src="${cardValues[i].image}"
-        class="image"/></div>
+        <img src="${cardValues[i].image}" class="image"/></div>
         </div>
         `;
-}
+} 
+//Grid
+gameBoard.style.gridTemplateColumns = `repeat(${size},auto)`;
 }
 
 //CARD CONTAINER
@@ -143,12 +143,39 @@ cards.forEach((card) => {
     });
 });
 
+//Start game
+startButton.addEventListener("click", () => {
+    movesCount = 0;
+    seconds = 0;
+    minutes = 0 ;
+//Visibility 
+    controls.classList.add("hide");
+    stopButton.classList.remove("hide");
+    startButton.classList.add("hide");
+//Start Timer
+    interval = setInterval(timeGenerator, 1000);
+//inital moves
+moves.innerHTML = `<span>Moves:</span> ${movesCount}`;
+initializer();
+});
+//Stop game
+stopButton.addEventListener(
+    "click",
+    (stopGame = () => {
+        controls.classList.remove("hide");
+        stopButton.classList.add("hide");
+        startButton.classList.remove("hide");
+        clearInterval(interval);
+    })
+);
+
+
 //initialize values and func calls
 const initializer = () => {
     result.innerText = "";
     winCount = 0;
-    let cardValue = generateRandom();
-    matrixGenerator(cardValue);
+    let cardValues = generateRandom();
+    matrixGenerator(cardValues);
 };
 
 initializer();

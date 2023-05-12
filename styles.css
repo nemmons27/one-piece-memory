@@ -3,12 +3,12 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Lato', sans-serif;
-}
+    }
 body {
-background-color: rgb(255, 208, 0);
+    background-color: rgb(255, 208, 0);
 }
 .wrapper {
-    box-sizing: border-box;
+    box-sizing: content-box;
     width: 32.95em;
     padding: 2.5em 3em;
     background-color: aliceblue;
@@ -19,18 +19,11 @@ background-color: rgb(255, 208, 0);
     border-radius: 0.5em;
     box-shadow: 0 0.9em 2.8em rgba(86, 66, 0, 0.2);
 }
-button {
-    border: none;
-    border-radius: 0.3em;
-    padding: 1em 1.5em;
-    cursor: pointer;
-}
 .gameBoard {
     position: relative;
     width: 100%;
     display: grid;
     gap: .7em;
-    grid-template-columns: 4, auto;
 }
 .stats-container {
     text-align: right;
@@ -39,29 +32,15 @@ button {
 .stats-container span {
     font-weight: 600;
 }
-.controls-container {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    background-color: antiquewhite;
-    top: 0;
-}
-.controls-container button {
-    font-size: 1.2em;
-    box-shadow: 0 0.6em 2em rgba(86, 66, 0, 0.2);
-}
-.hide {
-    display: none;
-}
 .card-container {
     position: relative;
     width: 6.3em;
     height: 6.3em;
     cursor: pointer;
+}
+img {
+    width: 100%;
+    height: 100%;
 }
 .card-before,
 .card-after {
@@ -80,16 +59,41 @@ button {
     background-color: gold;
     font-size: 2.8em;
     font-weight: 600;
+    overflow: hidden;
 }
 .card-after {
     background-color: aliceblue;
     transform: rotateY(180deg);
 }
+.flipped{
+    border: 5px red;
+}
 .card-container.flipped .card-before {
     transform: rotateY(180deg);
+    display: none;
+    z-index: -1;
 }
 .card-container.flipped .card-after {
     transform: rotateY(0deg);
+    display: none;
+    z-index: 1;
+}
+.controls-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: goldenrod;
+    top: 0;
+}
+button {
+    border: none;
+    border-radius: 0.3em;
+    padding: 1em 1.5em;
+    cursor: pointer;
 }
 #stop {
     font: 1.1em;
@@ -97,6 +101,13 @@ button {
     margin: 1.1em auto 0 auto;
     background-color: black;
     color: aliceblue;
+}
+.controls-container button {
+    font-size: 1.2em;
+    box-shadow: 0 0.6em 2em rgba(86, 66, 0, 0.2);
+}
+.hide {
+    display: none;
 }
 #result {
     text-align: center;

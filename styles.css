@@ -5,7 +5,7 @@
     font-family: 'Lato', sans-serif;
     }
 body {
-    background-color: rgb(255, 208, 0);
+    background-image: url("/img/background.jpg");
 }
 .wrapper {
     box-sizing: content-box;
@@ -65,18 +65,11 @@ img {
     background-color: aliceblue;
     transform: rotateY(180deg);
 }
-.flipped{
-    border: 5px red;
-}
 .card-container.flipped .card-before {
     transform: rotateY(180deg);
-    display: none;
-    z-index: -1;
 }
 .card-container.flipped .card-after {
     transform: rotateY(0deg);
-    display: none;
-    z-index: 1;
 }
 .controls-container {
     position: absolute;
@@ -88,6 +81,7 @@ img {
     height: 100%;
     background-color: goldenrod;
     top: 0;
+    background-image: url("/img/background.jpg")
 }
 button {
     border: none;

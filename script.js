@@ -1,9 +1,7 @@
 //Welcome to My Code for Project 1. 
 //This code is going to generate a Memory game for anime fans, One Piece to be specific.
 
-//Display message "Choose Difficulty", Display 2 buttons ["Captain", "Admiral"]
-    //If user presses "Captain", Displays 4x4 board of cards
-    //else, displays 6x6 board of cards
+//Displays Start button that leads to a 4x4 board of cards
 
 //Game-Timer starts on first card selection, counting down from 1:30
 //If the second card chosen doesn't match the first card, 
@@ -76,92 +74,73 @@ const movesCounter = () => {
 // Pick random cards
 const generateRandom = () => {
     let tempArray = [...items];
+    const selectedCards = [] ;
     const newSize = Math.floor(size * size / 2);
     //Random selection
 for(let i = 0; i < newSize; i++){
         const randomIndex = Math.floor(Math.random() * tempArray.length);
         const card = tempArray[randomIndex]
-        cardValues.push(card)
-        // tempArray = tempArray.filter((item, index) => 
-        // index !== randomIndex) 
-        // tempArray = tempArray.filter((item) => 
-        // item !== card)
+        selectedCards.push(card, card)
         //Remove selected Card from temp array 
         tempArray.splice(randomIndex, 1);
     }
-    return cardValues;
+    return selectedCards;
 };
-// //const flipElements = (elements) => {
-//     if (typeof elements !== "object" || !elements.length) return;
-//     elements.forEach((element) => element.classList.toggle("flipped"));
-// //}
-const flipCard = (evt) => {
-    const card = evt.target
-    console.log(card)
-    if (!card.classList.contains("matched")) {
-        card.innerHTML = `<img src = ${card.getAttribute("data-image-value")} >`
-        if (!firstCard) {
-            firstCard = card;
-            firstCardValue = card.getAttribute("data-card-value");
-        } else {
-            movesCounter();
-            secondCard = card;
-            let secondCardValue = card.getAttribute("data-card-value");
-            if (firstCardValue === secondCardValue) {
-                firstCard.classList.add("matched");
-                secondCard.classList.add("matched");
-                firstCard = false;
-                winCount += 1;
-                if (winCount === Math.floor(cardValues.length / 2)) {
-                    result.innerHTML = `<h4>Moves: ${movesCount}</h4>
-                    <h2>You're ready to set Sail!</h2>`;
-                    stopGame();
-                }
-            } else {
-                let [tempFirst, tempSecond] = [firstCard, secondCard];
-                firstCard = false;
-                secondCard = false;
-                let delay = setTimeout (() => {
-                    tempFirst.innerHTML = "?";
-                    tempSecond.innerHTML = "?";
-                }, 900);
-            };
-        };
-    };
-}
 
-const matrixGenerator = (cardValue) => {
+const matrixGenerator = (selectedCards) => {
     gameBoard.innerHTML = "";
-    const cardValues = []; 
-    //for(let i = 0; i < size * size /2; i++){
-        cardValues.push(...cardValue, ...cardValue)
-    //}
-    console.log(cardValues)
-    //Shuffle the Cards!    
-    cardValues.sort(() => Math.random() - 0.5);
-    for(let i = 0; i < cardValues.length / 2; i++){
-        const cardItem = cardValues[i]
-        console.log(cardValues.length)
-        //Create the cards
+    // Shuffle the Cards
+    selectedCards.sort(() => Math.random() - 0.5);
+    for (let i = 0; i < selectedCards.length; i++) {
+      // Create the cards
         gameBoard.innerHTML += `
-        <div class="card-container">
-            <div class ="card-before" data-card-value="${cardItem.name}" data-image-value ="${cardItem.image}">?</div>
-            <div class="card-after" data-card-value="${cardItem.name}" data-image-value ="${cardItem.image}">
-        < class="image"/>!</div>
+        <div class="card-container" data-card-value="${cardItem.name}" data-image-value="${cardItem.image}">
+        <div class="card-before" >?</div>
+        <div class="card-after">
+        <img class="image" src="${cardItem.image}" alt="${cardItem.name}" /></div>
         </div>
         `;
-}
+    }
+    //Grid
+    gameBoard.style.gridTemplateColumns = `repeat(${size},auto)`;
+    }
 //CARD CONTAINER
 const cards = document.querySelectorAll(".card-container");
 //console.log(cards)
 cards.forEach((card) => {
-    card.addEventListener("click", flipCard);
+    card.addEventListener("click", () => {
+        if (!card.classList.contains("matched")) {
+            card.classList.add("flipped")
+            if (!firstCard) {
+                firstCard = card;
+                firstCardValue = card.getAttribute("data-card-value");
+            } else {
+                movesCounter();
+                secondCard = card;
+                let secondCardValue = card.getAttribute("data-card-value");
+                if (firstCardValue === secondCardValue) {
+                    firstCard.classList.add("matched");
+                    secondCard.classList.add("matched");
+                    firstCard = false;
+                    winCount += 1;
+                    if (winCount == Math.floor(cardValues.length / 2)) {
+                        result.innerHTML = `<h4>Moves: ${movesCount}</h4>
+                        <h2>You're ready to set Sail!</h2>`
+                        stopGame();
+                    }
+                } else {
+                    let [tempFirst, tempSecond] = [firstCard, secondCard];
+                    firstCard = false;
+                    secondCard = false;
+                    let delay = setTimeout (() => {
+                        tempFirst.classList.remove("flipped");
+                        tempSecond.classList.remove("flipped");
+                    }, 900);
+                };
+            };
+        };
+    })
 }); 
-//Grid
-gameBoard.style.gridTemplateColumns = `repeat(${size},auto)`;
-}
-
-
 
 
 //Start game
